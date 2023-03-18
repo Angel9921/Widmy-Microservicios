@@ -22,4 +22,7 @@ urlpatterns = [
     path('', views.index),
     path('', include('measurements.urls')),
     path('', include('variables.urls')),
+    path('', include('consultas.urls')),
+    path('', include('historiaclinicas.urls')),
+    path('', include('pacientes.urls')),
 ]
