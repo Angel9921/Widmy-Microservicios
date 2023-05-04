@@ -42,6 +42,9 @@
                             <td>{{ historiaclinica.medicamentos }}</td>
                             <td>{{ historiaclinica.condiciones_medicas }}</td>
 			    <td>{{ historiaclinica.dateTime }}</td>
+			    <td>
+                                <a href="{% url 'historiaclinicaUpdate' historiaclinica.id %}" class="btn btn-primary">Update</a>
+                            </td>
                         </tr>
                         {% endfor %}
 
