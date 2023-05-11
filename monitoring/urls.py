@@ -20,12 +20,14 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
+    path('health/', views.health_check, name='health'),
     path('', include('measurements.urls')),
     path('', include('variables.urls')),
     path('', include('consultas.urls')),
     path('', include('historiaclinicas.urls')),
     path('', include('pacientes.urls')),
-    path('health-check/', views.healthCheck),
+    #path('health-check/', views.healthCheck),
     path(r'', include('django.contrib.auth.urls')),
     path(r'', include('social_django.urls')),
+    #path('', include('alarms.urls')),
 ]

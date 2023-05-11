@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'historiaclinicas',
     'consultas',
     'social_django',
+    'alarms',
 ]
 
 MIDDLEWARE = [
@@ -85,7 +86,7 @@ DATABASES = {
         'NAME': 'monitoring_db',
         'USER': 'monitoring_user',
         'PASSWORD': 'isis2503',
-        'HOST': '10.128.0.2',
+        'HOST': '10.106.224.3',
         'PORT': '5432',
     }
 }
