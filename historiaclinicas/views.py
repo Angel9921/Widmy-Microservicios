@@ -1,16 +1,25 @@
 from django.shortcuts import render, get_object_or_404
 from .forms import HistoriaclinicaForm
 from django.contrib import messages
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from .logic.logic_historiaclinica import create_historiaclinica, get_historiaclinicas
 from .models import Historiaclinica
+from django.contrib.auth.decorators import login_required
+from monitoring.auth0backend import getRole
+
+@login_required
 def historiaclinica_list(request):
-    historiaclinicas = get_historiaclinicas()
-    context = {
-        'historiaclinica_list': historiaclinicas
-    }
-    return render(request, 'Historiaclinica/historiaclinicas.html', context)
+    role = getRole(request)
+    if role == "Doctor":
+        historiaclinicas = get_historiaclinicas()
+        context = {
+            'historiaclinica_list': historiaclinicas
+        }
+        return render(request, 'Historiaclinica/historiaclinicas.html', context)
+    else:
+        return HttpResponse("Unauthorized User")
+
 
 def historiaclinica_create(request):
     if request.method == 'POST':

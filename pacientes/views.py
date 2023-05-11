@@ -6,7 +6,9 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from .forms import PacienteForm
 from .logic.paciente_logic import get_pacientes, create_paciente
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def paciente_list(request):
     pacientes = get_pacientes()
     context = {
