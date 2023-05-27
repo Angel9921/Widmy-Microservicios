@@ -19,10 +19,10 @@ from django.contrib.auth.decorators import login_required
 def PacienteList(request):
     queryset = Paciente.objects.all()
     context = list(queryset.values('id', 'nombre', 'apellido', 'fecha_nacimiento'))
-    # context = {
-    #     'paciente_list': pacientes
-    # }
-    return JsonResponse(context, safe=False)
+    context = {
+        'paciente_list': pacientes
+    }
+    return render(request, 'Paciente/pacientes.html', context)
 
 
 # def paciente_create(request):
