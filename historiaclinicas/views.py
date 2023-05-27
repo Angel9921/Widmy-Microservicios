@@ -7,18 +7,40 @@ from .logic.logic_historiaclinica import create_historiaclinica, get_historiacli
 from .models import Historiaclinica
 from django.contrib.auth.decorators import login_required
 from monitoring.auth0backend import getRole
+from django.http import JsonResponse
 
-@login_required
-def historiaclinica_list(request):
-    role = getRole(request)
-    if role == "Doctor":
-        historiaclinicas = get_historiaclinicas()
-        context = {
-            'historiaclinica_list': historiaclinicas
-        }
-        return render(request, 'Historiaclinica/historiaclinicas.html', context)
-    else:
-        return HttpResponse("Unauthorized User")
+
+def check_paciente(data):
+    r = requests.get(settings.PATH_VAR, headers={"Accept":"application/json"})
+    pacientes = r.json()
+    for paciente in pacientes:
+        if data["paciente"] == paciente["id"]:
+            return True
+    return False
+
+
+
+
+# @login_required
+# def historiaclinica_list(request):
+#     role = getRole(request)
+#     if role == "Doctor":
+#         historiaclinicas = get_historiaclinicas()
+#         context = {
+#             'historiaclinica_list': historiaclinicas
+#         }
+#         return render(request, 'Historiaclinica/historiaclinicas.html', context)
+#     else:
+#         return HttpResponse("Unauthorized User")
+
+def HistoriaclinicaList(request):
+    queryset = Historiaclinica.objects.all()
+    historiaclinicas = list(queryset.values('id', 'paciente', 'alergias', 'medicamentos', 'condiciones_medicas', 'dateTime'))
+    context = {
+        'historiaclinica_list': historiaclinicas
+    }
+    return render(request, 'Historiaclinica/historiaclinicas.html', context)
+
 
 
 def historiaclinica_create(request):
@@ -39,22 +61,22 @@ def historiaclinica_create(request):
 
     return render(request, 'Historiaclinica/historiaclinicaCreate.html', context)
 
-def historiaclinica_update(request, historiaclinica_id):
-    historiaclinica = get_object_or_404(Historiaclinica, pk=historiaclinica_id)
-    if request.method == 'POST':
-        form = HistoriaclinicaForm(request.POST, instance=historiaclinica)
-        if form.is_valid():
-            form.save()
-            messages.add_message(request, messages.SUCCESS, 'Historiaclinica update successful')
-            return HttpResponseRedirect(reverse('historiaclinicas'))
-        else:
-            print(form.errors)
-    else:
-        form = HistoriaclinicaForm(instance=historiaclinica)
+# def historiaclinica_update(request, historiaclinica_id):
+#     historiaclinica = get_object_or_404(Historiaclinica, pk=historiaclinica_id)
+#     if request.method == 'POST':
+#         form = HistoriaclinicaForm(request.POST, instance=historiaclinica)
+#         if form.is_valid():
+#             form.save()
+#             messages.add_message(request, messages.SUCCESS, 'Historiaclinica update successful')
+#             return HttpResponseRedirect(reverse('historiaclinicas'))
+#         else:
+#             print(form.errors)
+#     else:
+#         form = HistoriaclinicaForm(instance=historiaclinica)
 
-    context = {
-        'form': form,
-    }
+#     context = {
+#         'form': form,
+#     }
 
-    return render(request, 'Historiaclinica/historiaclinicaUpdate.html', context)
+#     return render(request, 'Historiaclinica/historiaclinicaUpdate.html', context)
 # Create your views here.

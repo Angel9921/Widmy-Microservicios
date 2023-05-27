@@ -5,3 +5,5 @@ class Paciente(models.Model):
     apellido = models.CharField(max_length=100)
     fecha_nacimiento = models.CharField(max_length=100)
 # Create your models here.
+    def __str__(self):
+        return '{}'.format(self.nombre)
