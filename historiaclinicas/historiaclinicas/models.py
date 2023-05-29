@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils import timezone
-from pacientes.models import Paciente
+#from pacientes.models import Paciente
 # Create your models here.
 class Historiaclinica(models.Model):
     paciente = models.IntegerField(null=False, default=None)
