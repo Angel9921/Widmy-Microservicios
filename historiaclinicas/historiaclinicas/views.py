@@ -21,25 +21,25 @@ def check_paciente(data):
 
 
 
-# @login_required
-# def historiaclinica_list(request):
-#     role = getRole(request)
-#     if role == "Doctor":
-#         historiaclinicas = get_historiaclinicas()
-#         context = {
-#             'historiaclinica_list': historiaclinicas
-#         }
-#         return render(request, 'Historiaclinica/historiaclinicas.html', context)
-#     else:
-#         return HttpResponse("Unauthorized User")
-
-def HistoriaclinicaList(request):
-    queryset = Historiaclinica.objects.all()
-    historiaclinicas = list(queryset.values('id', 'paciente', 'alergias', 'medicamentos', 'condiciones_medicas', 'dateTime'))
+#@login_required
+def historiaclinica_list(request):
+    #role = getRole(request)
+    #if role == "Doctor":
+    historiaclinicas = get_historiaclinicas()
     context = {
         'historiaclinica_list': historiaclinicas
     }
     return render(request, 'Historiaclinica/historiaclinicas.html', context)
+    # else:
+    #     return HttpResponse("Unauthorized User")
+
+# def HistoriaclinicaList(request):
+#     queryset = Historiaclinica.objects.all()
+#     historiaclinicas = list(queryset.values('id', 'paciente', 'alergias', 'medicamentos', 'condiciones_medicas', 'dateTime'))
+#     context = {
+#         'historiaclinica_list': historiaclinicas
+#     }
+#     return render(request, 'Historiaclinica/historiaclinicas.html', context)
 
 
 
