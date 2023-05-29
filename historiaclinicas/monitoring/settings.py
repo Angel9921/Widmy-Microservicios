@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'historiaclinicas_db',
         'USER': 'historiaclinicas_user',
         'PASSWORD': 'isis2503',
-        'HOST': '0.0.0.0',
+        'HOST': '10.128.0.4',
         'PORT': '5432',
     }
 }
@@ -134,4 +134,4 @@ STATICFILES_DIRS = (
 )
 
 PATH_VAR = "http://0.0.0.0:8080/pacientes"
-PATH_VAR_PLACES = "http://0.0.0.0:8080/places"
+

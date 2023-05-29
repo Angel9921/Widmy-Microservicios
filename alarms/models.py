@@ -1,6 +1,6 @@
 from django.db import models
 from pacientes.models import Paciente
-from historiaclinicas.models import Historiaclinica
+from historiaclinicas.historiaclinicas.models import Historiaclinica
 
 class Alarm(models.Model):
     paciente = models.ForeignKey(Paciente, on_delete=models.CASCADE, default=None)

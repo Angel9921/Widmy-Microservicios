@@ -1,4 +1,4 @@
-from historiaclinicas.models import Historiaclinica
+from historiaclinicas.historiaclinicas.models import Historiaclinica
 from ..models import Alarm
 
 def get_alarms():
