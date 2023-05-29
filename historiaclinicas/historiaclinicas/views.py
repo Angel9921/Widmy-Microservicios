@@ -59,7 +59,7 @@ def historiaclinica_create(request):
         'form': form,
     }
 
-    return render(request, 'Historiaclinica/historiaclinicaCreate.html', context)
+    return render(request, 'Historiaclinica/historiaclinicas.html', context)
 
 # def historiaclinica_update(request, historiaclinica_id):
 #     historiaclinica = get_object_or_404(Historiaclinica, pk=historiaclinica_id)
