@@ -6,7 +6,7 @@ from django.urls import reverse
 from .logic.logic_historiaclinica import create_historiaclinica, get_historiaclinicas
 from .models import Historiaclinica
 from django.contrib.auth.decorators import login_required
-from monitoring.auth0backend import getRole
+#from monitoring.auth0backend import getRole
 from django.http import JsonResponse
 
 
